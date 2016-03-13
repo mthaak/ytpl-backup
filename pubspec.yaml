@@ -1,0 +1,12 @@
+name: ytpl_backup
+version: 0.0.1
+author: M. ter Haak
+description: Web application that allows downloading of users Youtube playlists in csv format.
+dependencies:
+  browser: any
+  googleapis: ">=0.1.0 <0.2.0"
+  googleapis_auth: ">=0.2.0 <0.3.0"
+  archive: "^1.0.20"
+  csv: "^3.0.1"
+dev_dependencies:
+#  unittest: any
