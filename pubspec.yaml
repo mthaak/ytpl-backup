@@ -8,5 +8,6 @@ dependencies:
   googleapis_auth: ">=0.2.0 <0.3.0"
   archive: "^1.0.20"
   csv: "^3.0.1"
+  intl: "0.12.7"
 dev_dependencies:
 #  unittest: any
