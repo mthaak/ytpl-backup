@@ -1,4 +1,4 @@
-Youtube Playlist Backup
+YouTube Playlist Backup
 =======================
 
 Web application that allows downloading of users YouTube playlists in csv format.
