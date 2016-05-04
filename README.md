@@ -11,10 +11,10 @@ I use YouTube playlists to store my whole collection of favorite tracks which I 
 ### Usage
 1. **Authorize** the tool to use your YouTube account using the button "Authorize".  
 
-2. (Optional) **Upload** an additional zip file using the button "Upload".  
+2. (Optional) **Upload** an old backup zip file using the button "Upload".  
 This zip file must be an older backup downloaded with YouTube Playlist Backup. The tool then calculates the union of the older playlists with the newer playlists such that the removed videos remain in the backup.   
 
-3. **Download** the playlists using the button "**Download".  
+3. **Download** the playlists using the button "Download".  
 The playlists are downloaded in a zip file in whi each csv file corresponds to one playlist.
 
 Try it!
