@@ -2,6 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name=author content="M. ter Haak">
+    <meta name=description content="YouTube Playlist backup tool">
+    <meta name=keywords content="youtube, playlist, backup, tool, videos, playlistitem">
+
     <title>YouTube Playlist Backup</title>
 
     <!-- Latest compiled and minified jQuery -->
@@ -13,45 +17,97 @@
     <!-- Compiled and minified Materialize JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
+    <!-- Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-75033093-2', 'auto');
+        ga('send', 'pageview');
+    </script>
+
     <!-- Custom style -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Custom Icon -->
+    <link rel="icon" href="favicon.png">
 </head>
 
 <body>
-<div class="card Content">
-    <div class="card-content">
-        <h3>YouTube Playlist Backup</h3>
-        <ol>
-            <li>Authorize first:</li>
-            <button id="login_button" class="btn LoginButton">Initializing ...</button>
-            <!--<button id="logout_button" class="btn" disabled="disabled">Logout</button>-->
+<div class="Content">
+    <div class="card">
+        <div class="card-content">
+            <div class="Header">
+                <div class="IconContainer"><img src="favicon.png" class="Icon"/></div>
+                <h4 class="Title">YouTube Playlist Backup</h4>
 
-            <li>Your playlists:
-                <div id="playlist_grid" class="PlaylistGrid">
-                </div>
-            </li>
-
-            <li>[Optional] Upload diff file:
-                <form action="#">
-                    <div class="file-field input-field">
-                        <div class="btn">
-                            <span>File</span>
-                            <input type="file">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
-                        </div>
-                    </div>
-                </form>
-            </li>
-
-            <li>Download playlist:
-            </li>
-            <button id="download_button" class="btn DownloadButton">Download</button>
-        </ol>
+            </div>
+            <p>Download your YouTube playlists in csv format.</p>
+        </div>
     </div>
 
-</div>
+    <div class="card">
+        <div class="card-title">Instructions</div>
+        <div class="card-content">
+            <ol>
+                <li><p>Authorize the tool to use your YouTube account:</p>
+                    <button id="authorize_button" class="btn AuthorizeButton">Initializing ...</button>
+                </li>
+            </ol>
+
+            <p>Your playlists</p>
+            <div id="playlist_grid" class="PlaylistGrid">
+                <span class="SoftText">Authorize first...</span>
+            </div>
+
+            <ol start="2">
+                <li><p>[Optional] Upload an old backup zip file:</p>
+                    <span class="SoftText">This is used to recover removed videos.</span>
+                    <form action="#">
+                        <div class="file-field input-field">
+                            <div class="btn UploadButton">
+                                <span>Upload</span>
+                                <input id="input_file" type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </form>
+                </li>
+
+                <li><p>Download playlists:</p>
+                    <button id="download_button" class="btn DownloadButton" disabled="disabled">Download</button>
+                    <div class="SpinnerContainer">
+                        <div id="spinner" class="preloader-wrapper small active" style="display: none">
+                            <div class="spinner-layer spinner-red-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <span class="Footer">© Martin ter Haak 2016</span>
+        </div>
+
+    </div>
 </div>
 <script type="application/dart" src="index.dart"></script>
 <script src="packages/browser/dart.js"></script>
