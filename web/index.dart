@@ -135,7 +135,8 @@ void downloadPlaylists() {
     if (playlistItems.length > 0) {
       // Extract playlist title
       String playlistTitle = allPlaylists
-          .firstWhere((playlist) => playlist.id ==
+          .firstWhere((playlist) =>
+      playlist.id ==
           playlistItems.first.snippet.playlistId)
           .snippet
           .title;
@@ -143,7 +144,8 @@ void downloadPlaylists() {
 
       // Convert all youtube.PlaylistItem to SimplePlaylistItem
       List<SimplePlaylistItem> currentPlaylistItems = playlistItems.map((
-          playlistItem) => new SimplePlaylistItem.fromPlaylistItem(
+          playlistItem) =>
+      new SimplePlaylistItem.fromPlaylistItem(
           playlistItem)).toList();
 
       // Calculate union if there is an old zip file
@@ -154,7 +156,7 @@ void downloadPlaylists() {
           List<SimplePlaylistItem> oldPlaylistItems = csvToSimplePlaylistItems(
               oldCsvFile);
           // Calculate union
-          currentPlaylistItems = calculateUnionPlayItems(
+          currentPlaylistItems = calculateUnionPlayListItems(
               oldPlaylistItems, currentPlaylistItems);
         }
       }
@@ -247,7 +249,7 @@ void downloadZipFileToClient(archive.Archive zipFile) {
     String base64Archive = new convert.Base64Encoder().convert(bytesArchive);
     String uriArchive = Uri.encodeComponent(base64Archive);
 
-    doneBusy();
+    finishBusy();
 
     // Create and click download element
     AnchorElement tl = document.createElement('a');
@@ -256,14 +258,14 @@ void downloadZipFileToClient(archive.Archive zipFile) {
       ..attributes['download'] = filename + '.zip'
       ..click();
   } catch (e) {
-    doneBusy();
+    finishBusy();
     print('Download failed');
   }
 }
 
 /** Returns a file from an archive as csv string. */
 String getCsvFromArchive(archive.Archive archive, String filename) {
-  archive.ArchiveFile archiveFile = archive.findFile(filename);
+  var archiveFile = archive.findFile(filename);
   if (archiveFile != null) {
     return new convert.Utf8Decoder().convert(archiveFile.content);
   } else {
@@ -273,30 +275,36 @@ String getCsvFromArchive(archive.Archive archive, String filename) {
 }
 
 /** Calculates the union of old playlist items and the current playlist items. */
-List<SimplePlaylistItem> calculateUnionPlayItems(
+List<SimplePlaylistItem> calculateUnionPlayListItems(
     List<SimplePlaylistItem> oldPlaylistItems,
     List<SimplePlaylistItem> currentPlaylistItems) {
+  // Lists start with newest video so we need to reverse them
+  oldPlaylistItems = oldPlaylistItems.reversed.toList();
+  currentPlaylistItems = currentPlaylistItems.reversed.toList();
+
   List<SimplePlaylistItem> union = new List();
   int i = 0;
   int j = 0;
   while (i < oldPlaylistItems.length || j < currentPlaylistItems.length) {
-    if (oldPlaylistItems[i].videoId == currentPlaylistItems[j].videoId) {
+    if (i < oldPlaylistItems.length && j < currentPlaylistItems.length
+        && oldPlaylistItems[i].videoId == currentPlaylistItems[j].videoId) {
       // Old video still present
       union.add(oldPlaylistItems[i]);
       i++;
       j++;
-    } else if (i < oldPlaylistItems.length) {
+    } else if (i < oldPlaylistItems.length - 1) {
       // Old video was removed
       oldPlaylistItems[i].stillPresent = '0';
       union.add(oldPlaylistItems[i]);
       i++;
     } else {
       // New video was added
-      union.add(currentPlaylistItems[j]);
+      if (currentPlaylistItems[j].title != 'Deleted video')
+        union.add(currentPlaylistItems[j]);
       j++;
     }
   }
-  return union;
+  return union.reversed.toList();
 }
 
 /** Converts csv string to a list of simple playlist items. */
@@ -342,7 +350,7 @@ void startBusy() {
   querySelector('#input_file').disabled = true;
 }
 
-void doneBusy() {
+void finishBusy() {
   querySelector('#spinner').style.display = 'none';
   querySelector('#input_file').disabled = false;
 }
