@@ -1,0 +1,91 @@
+body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #f1f1f1; }
+
+.Content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 780px; }
+
+.card-title {
+  padding-left: 20px;
+  border-bottom: 1px solid #e2e2e2; }
+
+.Header {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px; }
+
+.IconContainer {
+  float: left;
+  position: relative;
+  top: -12px;
+  margin-right: 5px; }
+
+.Icon {
+  display: block;
+  width: 60px; }
+
+.Title {
+  display: inline;
+  margin: 10px; }
+
+.AuthorizeButton, .DownloadButton, .file-input {
+  margin-top: 10px; }
+
+.AuthorizeButton, .UploadButton, .DownloadButton {
+  background-color: #cc181e; }
+
+.AuthorizeButton:hover:enabled, .AuthorizeButton:focus:enabled, .DownloadButton:hover:enabled, .DownloadButton:focus:enabled {
+  background-color: #cc181e !important; }
+
+.UploadButton:hover {
+  background-color: #cc181e !important; }
+
+.SoftText {
+  color: #888;
+  font-size: small; }
+
+.PlaylistGrid {
+  margin-top: 10px;
+  height: 400px;
+  padding: 10px;
+  overflow-y: auto;
+  border-top: 1px solid #e2e2e2;
+  border-bottom: 1px solid #e2e2e2; }
+  .PlaylistGrid .PlaylistThumbnail {
+    display: inline-block;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 130px;
+    vertical-align: top; }
+    .PlaylistGrid .PlaylistThumbnail .PlaylistTitle {
+      font-size: 12px;
+      font-weight: bold; }
+    .PlaylistGrid .PlaylistThumbnail img {
+      object-fit: cover;
+      width: 100%;
+      height: 68px; }
+
+.Footer {
+  clear: left;
+  display: block;
+  position: relative;
+  top: 10px;
+  height: 20px;
+  font-size: small; }
+
+.DownloadButton {
+  float: left; }
+
+.SpinnerContainer {
+  display: inline-block;
+  position: relative;
+  top: 9px;
+  left: 20px;
+  height: 36px; }
+
+/*# sourceMappingURL=style.css.map */
