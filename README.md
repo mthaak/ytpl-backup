@@ -3,7 +3,7 @@ YouTube Playlist Backup
 
 Web application that allows downloading of users YouTube playlists in csv format.
 
-**It is hosted here: [YouTube Playlist Backup] (http://mthaak.com/ytpl-backup/)**
+**It is hosted here: [YouTube Playlist Backup] (https://mthaak.github.io/ytpl-backup/)**
 
 ### Motivation
 I use YouTube playlists to store my whole collection of favorite tracks which I have collected over the years. However, the videos are sometimes either deleted by the owner, made private or removed by YouTube itself. For this reason I have decided to create this tool which helps me create a backup of the tracks in my playlists. Also it was a good opportunity to use Google's programming language Dart for the first time. 
